@@ -4390,6 +4390,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.axios.get(this.selectedUrl).then(function (response) {
         _this4.form = response.data;
+        _this4.imageView = "../storage/" + _this4.form.image_path;
         _this4.form.skills = response.data.skills.split(",");
       })["catch"](function (error) {});
     }

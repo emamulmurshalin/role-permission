@@ -273,6 +273,7 @@ export default {
             this.axios.get(this.selectedUrl)
                 .then((response) => {
                     this.form = response.data;
+                    this.imageView = `../storage/` + this.form.image_path;
                     this.form.skills = response.data.skills.split(",");
                 }).catch((error) => {
 
