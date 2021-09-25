@@ -1,0 +1,16 @@
+.sidebar-menu-one .sidebar-menu-content .nav-sidebar-menu > .nav-item > .nav-link.active{
+    background-color: #00408a !important;
+}
+.sidebar-menu-one .sidebar-menu-content .nav-sidebar-menu > .nav-item > .nav-link span{
+    color: #ffa901;
+}
+.sidebar-menu-one .sidebar-menu-content .nav-sidebar-menu > .nav-item .sub-group-menu > .nav-item .nav-link.active{
+    background-color: #00408a !important;
+}
+.sidebar-menu-one .sidebar-menu-content .nav-sidebar-menu > .nav-item .sub-group-menu > .nav-item .nav-link{
+    color: #ffa901;
+}
+.sidebar-menu-one .sidebar-menu-content .nav-sidebar-menu .nav-item.active .nav-link span{
+    color: #ffa901;
+}
+
