@@ -2,7 +2,7 @@
     <div class="page-content" style="margin: 20px !important;">
         <div class="row">
             <div class="col-xs-12" style="width: 100%;">
-                <h3 class="header smaller lighter blue font-color">Employee list view</h3>
+                <h3 class="header smaller lighter blue font-color">User list view</h3>
 
                 <div class="clearfix" style="margin-bottom: 14px;">
                     <div class="pull-right tableTools-container"></div>
@@ -24,9 +24,7 @@
                             <th class="font-color">ID</th>
                             <th class="font-color">Name</th>
                             <th class="font-color">Email</th>
-                            <th class="font-color">Gender</th>
-                            <th class="font-color">Skills</th>
-                            <th class="font-color">Image</th>
+                            <th class="font-color">Role</th>
                             <th class="font-color">
                                 <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
                                 Action
@@ -35,18 +33,13 @@
                         </thead>
 
                         <tbody>
-                        <tr v-for="employee in employeeData">
+                        <tr v-for="user in userData">
                             <td>
-                                <a href="#">{{ employee.id }}</a>
+                                <a href="#">{{ user.id }}</a>
                             </td>
-                            <td>{{ employee.name }}</td>
-                            <td>{{ employee.email }}</td>
-                            <td>{{ employee.gender }}</td>
-                            <td>{{ employee.skills }}</td>
-                            <td>
-                                <img style="height: 37px; width: 40px;" class="pdf-icon"
-                                     :src="'../storage/' + employee.image_path">
-                            </td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.email }}</td>
+                            <td></td>
                             <td>
                                 <div class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"
@@ -54,9 +47,9 @@
                                         <span class="flaticon-more-button-of-three-dots"></span>
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a @click="editEmployee(employee.id)" class="dropdown-item" href="#"><i
+                                        <a @click="editUser(user.id)" class="dropdown-item" href="#"><i
                                             class="fas fa-cogs text-dark-pastel-green edit-button"></i>Edit</a>
-                                        <a @click.prevent="deleteEmployee(employee.id)" class="dropdown-item" href="#"><i
+                                        <a @click.prevent="deleteUser(user.id)" class="dropdown-item" href="#"><i
                                             class="fas fa-trash text-orange-red edit-button"></i>Delete</a>
                                     </div>
                                 </div>
@@ -71,7 +64,7 @@
         <div style="float: right;">
             <paginate
                 :page-count="pageCount"
-                :click-handler="getEmployees"
+                :click-handler="getUser"
                 :prev-text="'Prev'"
                 :next-text="'Next'"
                 :container-class="'pagination'"
@@ -79,10 +72,10 @@
             </paginate>
         </div>
 
-        <employee-add-edit-modal v-if="isModalActive"
+        <user-add-edit-modal v-if="isModalActive"
                                  :selected-url="selectedUrl"
                                  @close-modal="closeModal">
-        </employee-add-edit-modal>
+        </user-add-edit-modal>
         <app-confirmation-modal v-if="isConfirmationModal"
                                 :is-active="isConfirmationModal"
                                 @confirm="confirmed"
@@ -93,14 +86,14 @@
 
 <script>
 export default {
-    name: 'EmployeeListView',
+    name: "UserListView",
     data(){
         return {
             isModalActive: false,
             isConfirmationModal: false,
             selectedUrl: '',
             deletedId: null,
-            employeeData: {},
+            userData: {},
             perPage: 10,
             totalData: 0,
         };
@@ -122,36 +115,36 @@ export default {
         }
     },
     methods:{
-        deleteEmployee(id){
+        deleteUser(id){
             this.deletedId = id;
             this.isConfirmationModal = true;
         },
-        editEmployee(id){
-            this.selectedUrl = `/employee/${id}`;
+        editUser(id){
+            this.selectedUrl = `/users/${id}`;
             this.isModalActive = true;
             setTimeout(()=> {
-                $('#employee-modal').modal('show');
+                $('#user-modal').modal('show');
             })
         },
         openModal(){
             this.isModalActive = true;
             setTimeout(()=> {
-                $('#employee-modal').modal('show');
+                $('#user-modal').modal('show');
             })
         },
         closeModal(){
             this.selectedUrl = "";
             this.isModalActive = false;
-            $('#employee-modal').modal('hide');
+            $('#user-modal').modal('hide');
             this.getEmployees();
         },
         confirmed(){
-            this.axios.delete(`employee/${this.deletedId}`)
+            this.axios.delete(`users/${this.deletedId}`)
                 .then((response) => {
                     if(response.status == 200){
                         this.$toast.success(response.data.message);
                         this.isConfirmationModal = false;
-                        this.getEmployees();
+                        this.getUser();
                     }
                 }).catch(()=>{
                 this.isConfirmationModal = false;
@@ -161,17 +154,17 @@ export default {
             this.isConfirmationModal = false;
             this.deletedId = null;
         },
-        getEmployees(){
+        getUser(){
             this.axios.get('/employee')
                 .then((response) => {
                     this.totalData = response.data.total;
-                    this.employeeData = response.data.data;
+                    this.userData = response.data.data;
                 }).catch(()=>{
             });
         }
     },
     mounted() {
-        this.getEmployees();
+        this.getUser();
     },
 };
 </script>

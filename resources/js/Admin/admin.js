@@ -9,6 +9,8 @@ Vue.component(
     'admin-user-dashboard',
     require('./Components/Views/Dashboard/Dashboard').default
 );
+
+//Employee
 Vue.component(
     'show-all-employee',
     require('./Components/Views/Employee/EmployeListView').default
@@ -20,4 +22,14 @@ Vue.component(
 Vue.component(
     'employee-add-edit-modal',
     require('./Components/Views/Employee/EmployeAddEditModal').default
+);
+
+//Users
+Vue.component(
+    'show-all-user',
+    require('./Components/Views/Users/UserListView').default
+);
+Vue.component(
+    'user-add-edit-modal',
+    require('./Components/Views/Users/UserModal').default
 );

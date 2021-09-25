@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\Employee\EmployeeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/employees', function () {
+Route::get('/employee/list/view', function () {
     return view('admin.employee.all-employee');
 })->name('employee');
 

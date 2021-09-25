@@ -10,14 +10,17 @@
                 <a href="/dashboard" class="nav-link"><i
                         class="flaticon-dashboard"></i><span>Dashboard</span></a>
             </li>
-
             <li class="nav-item">
-                <a href="/employees" class="nav-link"><i
-                        class="flaticon-user"></i><span>Employees</span></a>
+                <a href="/user/list/view" class="nav-link"><i
+                        class="flaticon-user"></i><span>Users</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="/employee/list/view" class="nav-link"><i
+                        class="flaticon-classmates"></i><span>Employees</span></a>
             </li>
             <li class="nav-item">
                 <a href="/soft-delete-employees" class="nav-link"><i
-                        class="flaticon-user"></i><span>Trashed Employees</span></a>
+                        class="flaticon-classmates"></i><span>Trashed Employees</span></a>
             </li>
 
         </ul>
