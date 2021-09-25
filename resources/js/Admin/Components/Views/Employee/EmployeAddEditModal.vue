@@ -176,13 +176,13 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button style="font-size: 16px;" type="button" class="btn btn-secondary" @click.prevent="closeModal">
+                    <button type="button" class="btn btn-secondary submit-button" @click.prevent="closeModal">
                         Cancel
                     </button>
-                    <button v-if="selectedUrl" style="font-size: 16px;" type="submit" class="btn btn-primary" @click.prevent="update">
+                    <button v-if="selectedUrl" type="submit" class="btn btn-primary submit-button" @click.prevent="update">
                         Update
                     </button>
-                    <button style="font-size: 16px;" v-else type="submit" class="btn btn-primary" @click.prevent="submit">
+                    <button v-else type="submit" class="btn btn-primary submit-button" @click.prevent="submit">
                         Save
                     </button>
                 </div>

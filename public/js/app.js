@@ -4957,7 +4957,7 @@ __webpack_require__.r(__webpack_exports__);
       this.selectedUrl = "";
       this.isModalActive = false;
       $('#user-modal').modal('hide');
-      this.getEmployees();
+      this.getUser();
     },
     confirmed: function confirmed() {
       var _this = this;
@@ -4981,7 +4981,7 @@ __webpack_require__.r(__webpack_exports__);
     getUser: function getUser() {
       var _this2 = this;
 
-      this.axios.get('/employee').then(function (response) {
+      this.axios.get('/users').then(function (response) {
         _this2.totalData = response.data.total;
         _this2.userData = response.data.data;
       })["catch"](function () {});
@@ -5112,7 +5112,7 @@ __webpack_require__.r(__webpack_exports__);
     update: function update() {
       var _this2 = this;
 
-      this.axios.path('/users/' + this.form.id, this.form).then(function (response) {
+      this.axios.patch(this.selectedUrl, this.form).then(function (response) {
         if (response.status == 200) {
           _this2.$toast.success(response.data.message);
 
@@ -59527,8 +59527,7 @@ var render = function() {
               _c(
                 "button",
                 {
-                  staticClass: "btn btn-secondary",
-                  staticStyle: { "font-size": "16px" },
+                  staticClass: "btn btn-secondary submit-button",
                   attrs: { type: "button" },
                   on: {
                     click: function($event) {
@@ -59544,8 +59543,7 @@ var render = function() {
                 ? _c(
                     "button",
                     {
-                      staticClass: "btn btn-primary",
-                      staticStyle: { "font-size": "16px" },
+                      staticClass: "btn btn-primary submit-button",
                       attrs: { type: "submit" },
                       on: {
                         click: function($event) {
@@ -59559,8 +59557,7 @@ var render = function() {
                 : _c(
                     "button",
                     {
-                      staticClass: "btn btn-primary",
-                      staticStyle: { "font-size": "16px" },
+                      staticClass: "btn btn-primary submit-button",
                       attrs: { type: "submit" },
                       on: {
                         click: function($event) {
@@ -60507,8 +60504,7 @@ var render = function() {
               _c(
                 "button",
                 {
-                  staticClass: "btn btn-secondary",
-                  staticStyle: { "font-size": "16px" },
+                  staticClass: "btn btn-secondary submit-button",
                   attrs: { type: "button" },
                   on: {
                     click: function($event) {
@@ -60524,8 +60520,7 @@ var render = function() {
                 ? _c(
                     "button",
                     {
-                      staticClass: "btn btn-primary",
-                      staticStyle: { "font-size": "16px" },
+                      staticClass: "btn btn-primary submit-button",
                       attrs: { type: "submit" },
                       on: {
                         click: function($event) {
@@ -60539,8 +60534,7 @@ var render = function() {
                 : _c(
                     "button",
                     {
-                      staticClass: "btn btn-primary",
-                      staticStyle: { "font-size": "16px" },
+                      staticClass: "btn btn-primary submit-button",
                       attrs: { type: "submit" },
                       on: {
                         click: function($event) {

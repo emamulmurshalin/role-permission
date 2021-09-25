@@ -3,10 +3,16 @@
 namespace App\Http\Controllers\Admin\User;
 
 use App\Http\Controllers\Controller;
+use App\Services\Admin\UserService;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Types\This;
 
 class UserController extends Controller
 {
+    public function __construct(UserService $userService)
+    {
+        $this->service = $userService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return $this->service->showUsers();
     }
 
     /**
@@ -35,7 +41,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|regex:/^[\pL\s\-]+$/u',
+            'email' => 'required|email|unique:users'
+        ]);
+
+        return $this->service->saveUser($request->all());
     }
 
     /**
@@ -46,7 +57,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        return $this->service->detailsUser($id);
     }
 
     /**
@@ -69,7 +80,12 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|regex:/^[\pL\s\-]+$/u',
+            'email' => 'required|email',
+        ]);
+
+        return $this->service->updateUser($request->all(), $id);
     }
 
     /**
@@ -80,6 +96,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->service->deleteUser($id);
     }
 }

@@ -135,7 +135,7 @@ export default {
             this.selectedUrl = "";
             this.isModalActive = false;
             $('#user-modal').modal('hide');
-            this.getEmployees();
+            this.getUser();
         },
         confirmed(){
             this.axios.delete(`/users/${this.deletedId}`)
@@ -154,7 +154,7 @@ export default {
             this.deletedId = null;
         },
         getUser(){
-            this.axios.get('/employee')
+            this.axios.get('/users')
                 .then((response) => {
                     this.totalData = response.data.total;
                     this.userData = response.data.data;

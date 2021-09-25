@@ -18,6 +18,13 @@
 .btn-design{
     float: right;
     margin-bottom: 15px;
-    padding: 8px;
+    padding: 7px 15px;
     font-size: 16px;
+    font-weight: 600;
+}
+
+.submit-button{
+    font-size: 16px;
+    padding: 7px 15px;
+    font-weight: 600;
 }
