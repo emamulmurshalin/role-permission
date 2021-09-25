@@ -82,7 +82,7 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|regex:/^[\pL\s\-]+$/u',
-            'email' => 'required|email',
+            'email' => 'unique:users,email,' . $id,
         ]);
 
         return $this->service->updateUser($request->all(), $id);
