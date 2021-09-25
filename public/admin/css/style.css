@@ -14,3 +14,10 @@
     color: #ffa901;
 }
 
+/* Custom css */
+.btn-design{
+    float: right;
+    margin-bottom: 15px;
+    padding: 8px;
+    font-size: 16px;
+}

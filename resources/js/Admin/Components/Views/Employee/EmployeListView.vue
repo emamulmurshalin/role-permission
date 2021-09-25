@@ -8,8 +8,7 @@
                     <div class="pull-right tableTools-container"></div>
                 </div>
 
-                <button style="float: right; margin-bottom: 15px; padding: 8px; font-size: 16px;"
-                        @click.prevent="openModal" data-toggle="modal" class="btn btn-primary">
+                <button @click.prevent="openModal" data-toggle="modal" class="btn btn-primary btn-design">
                     <i class="fas glyphicon-plus"></i>
                     Add new
                 </button>

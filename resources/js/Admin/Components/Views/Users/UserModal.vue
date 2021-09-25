@@ -53,20 +53,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Role</label>
-                                <div class="col-sm-9">
-                                    <select v-model="form.role_id" class="form-control">
-                                        <option class="disabled">Please Select Role *</option>
-                                        <option v-for="(role, index) in Roles"
-                                                v-bind:value="role.id" :key="index"
-                                                :selected="index === 0 ? 'selected' : ''">
-                                            {{role.name}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-
                         </div>
                         <!-- /.card-body -->
                     </form>
@@ -95,10 +81,8 @@ export default {
         return{
             form: new Form({
                 name: '',
-                email: '',
-                role_id: '',
+                email: ''
             }),
-            Roles: {},
             errors: {},
         }
     },
