@@ -1,59 +1,83 @@
 <template>
-    <div v-if="dataLoaded">
-        <div class="row" style="margin-left: 0px;">
-            <div class="col-xl-10 col-sm-10 col-md-10" style="float: left; padding-left: 0px;">
-                <h3 class="header smaller lighter blue">Trash Employee List View</h3>
-                <div class="clearfix">
+    <div class="page-content" style="margin: 20px !important;">
+        <div class="row">
+            <div class="col-xs-12" style="width: 100%;">
+                <h3 class="header smaller lighter blue font-color">Slider Information</h3>
+
+                <div class="clearfix" style="margin-bottom: 14px;">
                     <div class="pull-right tableTools-container"></div>
                 </div>
-            </div>
-            <div class="col-xl-2 col-sm-2 col-md-2" style="float: right">
-                <button style="float: right; font-size: 16px;" @click.prevent="openModal" data-toggle="modal" class="btn btn-success">
+
+                <button style="float: right; margin-bottom: 15px; padding: 8px; font-size: 16px;"
+                        @click.prevent="openModal" data-toggle="modal" class="btn btn-primary">
+                    <i class="fas glyphicon-plus"></i>
                     Add new
                 </button>
-            </div>
 
+                <!-- div.table-responsive -->
+
+                <!-- div.dataTables_borderWrap -->
+                <div>
+                    <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th class="font-color">ID</th>
+                            <th class="font-color">Name</th>
+                            <th class="font-color">Email</th>
+                            <th class="font-color">Image</th>
+                            <th class="font-color">
+                                <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
+                                Action
+                            </th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr v-for="employee in employeeData">
+                            <td>
+                                <a href="#">{{ employee.id }}</a>
+                            </td>
+                            <td>{{ employee.name }}</td>
+                            <td>{{ employee.email }}</td>
+                            <td>
+                                <img style="height: 37px; width: 40px;" class="pdf-icon"
+                                     :src="'../storage/' + employee.image_path">
+                            </td>
+                            <td>
+                                <div class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                       aria-expanded="false">
+                                        <span class="flaticon-more-button-of-three-dots"></span>
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a @click="editEmployee(employee.id)" class="dropdown-item" href="#"><i
+                                            class="fas fa-cogs text-dark-pastel-green edit-button"></i>Edit</a>
+                                        <a @click.prevent="deleteEmployee(employee.id)" class="dropdown-item" href="#"><i
+                                            class="fas fa-trash text-orange-red edit-button"></i>Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
-        <vue-good-table
-            :columns="columns"
-            :rows="employeeData"
-            :pagination-options="pagination"
-            :search-options="searchOption"
-            :sort-options="sortOption"
-            @on-search="onSearch"
-            @on-page-change="onPageChange"
-            @on-per-page-change="onPageChange"
-            @on-sort-change="onSortChange"
-            @on-column-filter="onColumnFilter"
-            :totalRows="totalData">
-            <template slot="table-row" slot-scope="props">
-                <span v-if="props.column.field == 'action'">
-                    <div class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                           aria-expanded="false">
-                            <span class="flaticon-more-button-of-three-dots"></span>
-                        </a>
-                        <div class="dropdown-menu">
-                              <a class="dropdown-item" href="#" @click.prevent="getAction(props.row, 'edit')">
-                                  <i class="fas fa-cogs text-dark-pastel-green edit-button"></i>
-                                  Edit
-                              </a>
-                              <a class="dropdown-item" href="#" @click.prevent="getAction(props.row, 'delete')">
-                                  <i class="fas fa-trash text-orange-red edit-button"></i>
-                                  Delete
-                              </a>
-                        </div>
-                    </div>
-                </span>
-                <span v-else>
-                  {{props.formattedRow[props.column.field]}}
-                </span>
-            </template>
-        </vue-good-table>
+        <div style="float: right;">
+            <paginate
+                :page-count="pageCount"
+                :click-handler="getEmployees"
+                :prev-text="'Prev'"
+                :next-text="'Next'"
+                :container-class="'pagination'"
+                :page-class="'page-item'">
+            </paginate>
+        </div>
+
         <employee-add-edit-modal v-if="isModalActive"
-                             :selected-url="selectedUrl"
-                             @close-modal="closeModal">
+                                 :selected-url="selectedUrl"
+                                 @close-modal="closeModal">
         </employee-add-edit-modal>
         <app-confirmation-modal v-if="isConfirmationModal"
                                 :is-active="isConfirmationModal"
@@ -65,119 +89,57 @@
 
 <script>
 export default {
-    name: 'UsaUserListView',
+    name: 'SoftDeleteEmployeeListView',
     data(){
         return {
             isModalActive: false,
             isConfirmationModal: false,
-            addTrialTimeModal: false,
             selectedUrl: '',
             deletedId: null,
             employeeData: {},
-            totalData: '',
-            dataLoaded: true,
-            columns: [
-                {
-                    label: 'Name',
-                    field: 'name',
-                },
-                {
-                    label: 'Email',
-                    field: 'email',
-                    type: 'number',
-                    sortable: false
-                },
-                {
-                    label: 'Image',
-                    field: 'image_path',
-                    type: 'file',
-                    sortable: false
-                },
-                {
-                    label: 'Gender',
-                    field: 'gender',
-                },
-                {
-                    label: 'Skills',
-                    field: 'skills',
-                },
-                {
-                    label: 'Action',
-                    field: 'action',
-                    sortable: false,
-                },
-            ],
-            searchOption: {
-                enabled: true,
-                trigger: 'enter',
-                skipDiacritics: true,
-                placeholder: 'Search this table'
-            },
-            pagination: {
-                enabled: true,
-                mode: 'records',
-                perPage: 10,
-                position: 'bottom',
-                perPageDropdown: [5, 10, 15],
-                dropdownAllowAll: false,
-                setCurrentPage: 1,
-                nextLabel: 'next',
-                prevLabel: 'prev',
-                rowsPerPageLabel: 'Rows per page',
-                ofLabel: 'of',
-                pageLabel: 'page', // for 'pages' mode
-                allLabel: 'All',
-                infoFn: (params) => `my own page ${params.firstRecordOnPage}`,
-            },
-            sortOption: {
-                enabled: true,
-                initialSortBy:
-                    { field: 'name', type: 'asc' }
-            },
+            perPage: 10,
+            totalData: 0,
         };
     },
-    methods:{
-        getAction(rowData, actionType){
-            //console.log(rowData, actionType, 'row data');
-            if (actionType == 'delete'){
-                this.deletedId = rowData.id;
-                this.isConfirmationModal = true;
-            }else if(actionType == 'edit'){
-                this.selectedUrl = `employee/${rowData.id}`;
-                this.isModalActive = true;
-                setTimeout(()=> {
-                    $('#user-modal').modal('show');
-                })
+    computed:{
+        pageCount(){
+            if (this.totalData <= 10){
+                return 1;
+            }else {
+                let totalPage;
+                totalPage = (this.totalData % this.perPage);
+                if (totalPage == 0){
+                    totalPage = (this.totalData / this.perPage) + 1;
+                }else {
+                    totalPage = (this.totalData / this.perPage);
+                }
+                return totalPage;
             }
+        }
+    },
+    methods:{
+        deleteEmployee(id){
+            this.deletedId = id;
+            this.isConfirmationModal = true;
         },
-        onSearch(search){
-            // console.log(search, 'search data');
-        },
-        onPageChange(page){
-            // console.log(page, 'page change');
-        },
-        onSortChange(sort){
-            // console.log(sort, 'sort column');
-        },
-        onColumnFilter(filter){
-            console.log(filter, 'filter data');
+        editEmployee(id){
+            this.selectedUrl = `/employee/${id}`;
+            this.isModalActive = true;
+            setTimeout(()=> {
+                $('#employee-modal').modal('show');
+            })
         },
         openModal(){
             this.isModalActive = true;
             setTimeout(()=> {
-                $('#user-modal').modal('show');
+                $('#employee-modal').modal('show');
             })
         },
         closeModal(){
             this.selectedUrl = "";
             this.isModalActive = false;
-            $('#user-modal').modal('hide');
+            $('#employee-modal').modal('hide');
             this.getEmployees();
-        },
-        closeModalTrialModal(){
-            this.selectedUrl = "";
-            this.addTrialTimeModal = false;
-            $('#trial-time-modal').modal('hide');
         },
         confirmed(){
             this.axios.delete(`employee/${this.deletedId}`)

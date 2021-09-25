@@ -1,5 +1,5 @@
 <template>
-    <div id="user-modal" class="modal fade bd-example-modal-lg"
+    <div id="employee-modal" class="modal fade bd-example-modal-lg"
          tabindex="-1" role="dialog"
          aria-labelledby="myLargeModalLabel"
          aria-hidden="true">

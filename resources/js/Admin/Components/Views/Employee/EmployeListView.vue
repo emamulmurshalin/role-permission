@@ -8,7 +8,8 @@
                     <div class="pull-right tableTools-container"></div>
                 </div>
 
-                <button style="float: right; margin-bottom: 15px; padding: 8px;" @click.prevent="openModal" data-toggle="modal" class="btn btn-success">
+                <button style="float: right; margin-bottom: 15px; padding: 8px; font-size: 16px;"
+                        @click.prevent="openModal" data-toggle="modal" class="btn btn-primary">
                     <i class="fas glyphicon-plus"></i>
                     Add new
                 </button>
@@ -23,6 +24,8 @@
                             <th class="font-color">ID</th>
                             <th class="font-color">Name</th>
                             <th class="font-color">Email</th>
+                            <th class="font-color">Gender</th>
+                            <th class="font-color">Skills</th>
                             <th class="font-color">Image</th>
                             <th class="font-color">
                                 <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
@@ -38,6 +41,8 @@
                             </td>
                             <td>{{ employee.name }}</td>
                             <td>{{ employee.email }}</td>
+                            <td>{{ employee.gender }}</td>
+                            <td>{{ employee.skills }}</td>
                             <td>
                                 <img style="height: 37px; width: 40px;" class="pdf-icon"
                                      :src="'../storage/' + employee.image_path">
@@ -88,7 +93,7 @@
 
 <script>
 export default {
-    name: 'UsaUserListView',
+    name: 'EmployeeListView',
     data(){
         return {
             isModalActive: false,
@@ -125,25 +130,20 @@ export default {
             this.selectedUrl = `/employee/${id}`;
             this.isModalActive = true;
             setTimeout(()=> {
-                $('#user-modal').modal('show');
+                $('#employee-modal').modal('show');
             })
         },
         openModal(){
             this.isModalActive = true;
             setTimeout(()=> {
-                $('#user-modal').modal('show');
+                $('#employee-modal').modal('show');
             })
         },
         closeModal(){
             this.selectedUrl = "";
             this.isModalActive = false;
-            $('#user-modal').modal('hide');
+            $('#employee-modal').modal('hide');
             this.getEmployees();
-        },
-        closeModalTrialModal(){
-            this.selectedUrl = "";
-            this.addTrialTimeModal = false;
-            $('#trial-time-modal').modal('hide');
         },
         confirmed(){
             this.axios.delete(`employee/${this.deletedId}`)

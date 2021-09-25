@@ -4481,8 +4481,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'UsaUserListView',
+  name: 'EmployeeListView',
   data: function data() {
     return {
       isModalActive: false,
@@ -4521,25 +4526,20 @@ __webpack_require__.r(__webpack_exports__);
       this.selectedUrl = "/employee/".concat(id);
       this.isModalActive = true;
       setTimeout(function () {
-        $('#user-modal').modal('show');
+        $('#employee-modal').modal('show');
       });
     },
     openModal: function openModal() {
       this.isModalActive = true;
       setTimeout(function () {
-        $('#user-modal').modal('show');
+        $('#employee-modal').modal('show');
       });
     },
     closeModal: function closeModal() {
       this.selectedUrl = "";
       this.isModalActive = false;
-      $('#user-modal').modal('hide');
+      $('#employee-modal').modal('hide');
       this.getEmployees();
-    },
-    closeModalTrialModal: function closeModalTrialModal() {
-      this.selectedUrl = "";
-      this.addTrialTimeModal = false;
-      $('#trial-time-modal').modal('hide');
     },
     confirmed: function confirmed() {
       var _this = this;
@@ -4652,115 +4652,84 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'UsaUserListView',
+  name: 'SoftDeleteEmployeeListView',
   data: function data() {
     return {
       isModalActive: false,
       isConfirmationModal: false,
-      addTrialTimeModal: false,
       selectedUrl: '',
       deletedId: null,
       employeeData: {},
-      totalData: '',
-      dataLoaded: true,
-      columns: [{
-        label: 'Name',
-        field: 'name'
-      }, {
-        label: 'Email',
-        field: 'email',
-        type: 'number',
-        sortable: false
-      }, {
-        label: 'Image',
-        field: 'image_path',
-        type: 'file',
-        sortable: false
-      }, {
-        label: 'Gender',
-        field: 'gender'
-      }, {
-        label: 'Skills',
-        field: 'skills'
-      }, {
-        label: 'Action',
-        field: 'action',
-        sortable: false
-      }],
-      searchOption: {
-        enabled: true,
-        trigger: 'enter',
-        skipDiacritics: true,
-        placeholder: 'Search this table'
-      },
-      pagination: {
-        enabled: true,
-        mode: 'records',
-        perPage: 10,
-        position: 'bottom',
-        perPageDropdown: [5, 10, 15],
-        dropdownAllowAll: false,
-        setCurrentPage: 1,
-        nextLabel: 'next',
-        prevLabel: 'prev',
-        rowsPerPageLabel: 'Rows per page',
-        ofLabel: 'of',
-        pageLabel: 'page',
-        // for 'pages' mode
-        allLabel: 'All',
-        infoFn: function infoFn(params) {
-          return "my own page ".concat(params.firstRecordOnPage);
-        }
-      },
-      sortOption: {
-        enabled: true,
-        initialSortBy: {
-          field: 'name',
-          type: 'asc'
-        }
-      }
+      perPage: 10,
+      totalData: 0
     };
   },
-  methods: {
-    getAction: function getAction(rowData, actionType) {
-      //console.log(rowData, actionType, 'row data');
-      if (actionType == 'delete') {
-        this.deletedId = rowData.id;
-        this.isConfirmationModal = true;
-      } else if (actionType == 'edit') {
-        this.selectedUrl = "employee/".concat(rowData.id);
-        this.isModalActive = true;
-        setTimeout(function () {
-          $('#user-modal').modal('show');
-        });
+  computed: {
+    pageCount: function pageCount() {
+      if (this.totalData <= 10) {
+        return 1;
+      } else {
+        var totalPage;
+        totalPage = this.totalData % this.perPage;
+
+        if (totalPage == 0) {
+          totalPage = this.totalData / this.perPage + 1;
+        } else {
+          totalPage = this.totalData / this.perPage;
+        }
+
+        return totalPage;
       }
+    }
+  },
+  methods: {
+    deleteEmployee: function deleteEmployee(id) {
+      this.deletedId = id;
+      this.isConfirmationModal = true;
     },
-    onSearch: function onSearch(search) {// console.log(search, 'search data');
-    },
-    onPageChange: function onPageChange(page) {// console.log(page, 'page change');
-    },
-    onSortChange: function onSortChange(sort) {// console.log(sort, 'sort column');
-    },
-    onColumnFilter: function onColumnFilter(filter) {
-      console.log(filter, 'filter data');
+    editEmployee: function editEmployee(id) {
+      this.selectedUrl = "/employee/".concat(id);
+      this.isModalActive = true;
+      setTimeout(function () {
+        $('#employee-modal').modal('show');
+      });
     },
     openModal: function openModal() {
       this.isModalActive = true;
       setTimeout(function () {
-        $('#user-modal').modal('show');
+        $('#employee-modal').modal('show');
       });
     },
     closeModal: function closeModal() {
       this.selectedUrl = "";
       this.isModalActive = false;
-      $('#user-modal').modal('hide');
+      $('#employee-modal').modal('hide');
       this.getEmployees();
-    },
-    closeModalTrialModal: function closeModalTrialModal() {
-      this.selectedUrl = "";
-      this.addTrialTimeModal = false;
-      $('#trial-time-modal').modal('hide');
     },
     confirmed: function confirmed() {
       var _this = this;
@@ -58283,7 +58252,7 @@ var render = function() {
     {
       staticClass: "modal fade bd-example-modal-lg",
       attrs: {
-        id: "user-modal",
+        id: "employee-modal",
         tabindex: "-1",
         role: "dialog",
         "aria-labelledby": "myLargeModalLabel",
@@ -59070,11 +59039,263 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-success",
+                staticClass: "btn btn-primary",
                 staticStyle: {
                   float: "right",
                   "margin-bottom": "15px",
-                  padding: "8px"
+                  padding: "8px",
+                  "font-size": "16px"
+                },
+                attrs: { "data-toggle": "modal" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.openModal.apply(null, arguments)
+                  }
+                }
+              },
+              [
+                _c("i", { staticClass: "fas glyphicon-plus" }),
+                _vm._v("\n                Add new\n            ")
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", [
+              _c(
+                "table",
+                {
+                  staticClass: "table table-striped table-bordered table-hover",
+                  attrs: { id: "dynamic-table" }
+                },
+                [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.employeeData, function(employee) {
+                      return _c("tr", [
+                        _c("td", [
+                          _c("a", { attrs: { href: "#" } }, [
+                            _vm._v(_vm._s(employee.id))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(employee.name))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(employee.email))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(employee.gender))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(employee.skills))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("img", {
+                            staticClass: "pdf-icon",
+                            staticStyle: { height: "37px", width: "40px" },
+                            attrs: { src: "../storage/" + employee.image_path }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("div", { staticClass: "dropdown" }, [
+                            _vm._m(2, true),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "dropdown-menu" }, [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "dropdown-item",
+                                  attrs: { href: "#" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.editEmployee(employee.id)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass:
+                                      "fas fa-cogs text-dark-pastel-green edit-button"
+                                  }),
+                                  _vm._v("Edit")
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "dropdown-item",
+                                  attrs: { href: "#" },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.deleteEmployee(employee.id)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass:
+                                      "fas fa-trash text-orange-red edit-button"
+                                  }),
+                                  _vm._v("Delete")
+                                ]
+                              )
+                            ])
+                          ])
+                        ])
+                      ])
+                    }),
+                    0
+                  )
+                ]
+              )
+            ])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticStyle: { float: "right" } },
+        [
+          _c("paginate", {
+            attrs: {
+              "page-count": _vm.pageCount,
+              "click-handler": _vm.getEmployees,
+              "prev-text": "Prev",
+              "next-text": "Next",
+              "container-class": "pagination",
+              "page-class": "page-item"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _vm.isModalActive
+        ? _c("employee-add-edit-modal", {
+            attrs: { "selected-url": _vm.selectedUrl },
+            on: { "close-modal": _vm.closeModal }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.isConfirmationModal
+        ? _c("app-confirmation-modal", {
+            attrs: { "is-active": _vm.isConfirmationModal },
+            on: { confirm: _vm.confirmed, cancel: _vm.cancelled }
+          })
+        : _vm._e()
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "clearfix", staticStyle: { "margin-bottom": "14px" } },
+      [_c("div", { staticClass: "pull-right tableTools-container" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticClass: "font-color" }, [_vm._v("ID")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "font-color" }, [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "font-color" }, [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "font-color" }, [_vm._v("Gender")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "font-color" }, [_vm._v("Skills")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "font-color" }, [_vm._v("Image")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "font-color" }, [
+          _c("i", {
+            staticClass: "ace-icon fa fa-clock-o bigger-110 hidden-480"
+          }),
+          _vm._v(
+            "\n                            Action\n                        "
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "dropdown-toggle",
+        attrs: {
+          href: "#",
+          "data-toggle": "dropdown",
+          "aria-expanded": "false"
+        }
+      },
+      [_c("span", { staticClass: "flaticon-more-button-of-three-dots" })]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Admin/Components/Views/Employee/SoftDeleteEmployeListView.vue?vue&type=template&id=19384270&scoped=true&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Admin/Components/Views/Employee/SoftDeleteEmployeListView.vue?vue&type=template&id=19384270&scoped=true& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "page-content", staticStyle: { margin: "20px !important" } },
+    [
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          { staticClass: "col-xs-12", staticStyle: { width: "100%" } },
+          [
+            _c(
+              "h3",
+              { staticClass: "header smaller lighter blue font-color" },
+              [_vm._v("Slider Information")]
+            ),
+            _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                staticStyle: {
+                  float: "right",
+                  "margin-bottom": "15px",
+                  padding: "8px",
+                  "font-size": "16px"
                 },
                 attrs: { "data-toggle": "modal" },
                 on: {
@@ -59267,218 +59488,6 @@ var staticRenderFns = [
         }
       },
       [_c("span", { staticClass: "flaticon-more-button-of-three-dots" })]
-    )
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Admin/Components/Views/Employee/SoftDeleteEmployeListView.vue?vue&type=template&id=19384270&scoped=true&":
-/*!**********************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Admin/Components/Views/Employee/SoftDeleteEmployeListView.vue?vue&type=template&id=19384270&scoped=true& ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* binding */ render),
-/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
-/* harmony export */ });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm.dataLoaded
-    ? _c(
-        "div",
-        [
-          _c(
-            "div",
-            { staticClass: "row", staticStyle: { "margin-left": "0px" } },
-            [
-              _vm._m(0),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "col-xl-2 col-sm-2 col-md-2",
-                  staticStyle: { float: "right" }
-                },
-                [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-success",
-                      staticStyle: { float: "right", "font-size": "16px" },
-                      attrs: { "data-toggle": "modal" },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.openModal.apply(null, arguments)
-                        }
-                      }
-                    },
-                    [_vm._v("\n                Add new\n            ")]
-                  )
-                ]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("vue-good-table", {
-            attrs: {
-              columns: _vm.columns,
-              rows: _vm.employeeData,
-              "pagination-options": _vm.pagination,
-              "search-options": _vm.searchOption,
-              "sort-options": _vm.sortOption,
-              totalRows: _vm.totalData
-            },
-            on: {
-              "on-search": _vm.onSearch,
-              "on-page-change": _vm.onPageChange,
-              "on-per-page-change": _vm.onPageChange,
-              "on-sort-change": _vm.onSortChange,
-              "on-column-filter": _vm.onColumnFilter
-            },
-            scopedSlots: _vm._u(
-              [
-                {
-                  key: "table-row",
-                  fn: function(props) {
-                    return [
-                      props.column.field == "action"
-                        ? _c("span", [
-                            _c("div", { staticClass: "dropdown" }, [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "dropdown-toggle",
-                                  attrs: {
-                                    href: "#",
-                                    "data-toggle": "dropdown",
-                                    "aria-expanded": "false"
-                                  }
-                                },
-                                [
-                                  _c("span", {
-                                    staticClass:
-                                      "flaticon-more-button-of-three-dots"
-                                  })
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "dropdown-menu" }, [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "#" },
-                                    on: {
-                                      click: function($event) {
-                                        $event.preventDefault()
-                                        return _vm.getAction(props.row, "edit")
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass:
-                                        "fas fa-cogs text-dark-pastel-green edit-button"
-                                    }),
-                                    _vm._v(
-                                      "\n                              Edit\n                          "
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "#" },
-                                    on: {
-                                      click: function($event) {
-                                        $event.preventDefault()
-                                        return _vm.getAction(
-                                          props.row,
-                                          "delete"
-                                        )
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass:
-                                        "fas fa-trash text-orange-red edit-button"
-                                    }),
-                                    _vm._v(
-                                      "\n                              Delete\n                          "
-                                    )
-                                  ]
-                                )
-                              ])
-                            ])
-                          ])
-                        : _c("span", [
-                            _vm._v(
-                              "\n              " +
-                                _vm._s(props.formattedRow[props.column.field]) +
-                                "\n            "
-                            )
-                          ])
-                    ]
-                  }
-                }
-              ],
-              null,
-              false,
-              3004906077
-            )
-          }),
-          _vm._v(" "),
-          _vm.isModalActive
-            ? _c("employee-add-edit-modal", {
-                attrs: { "selected-url": _vm.selectedUrl },
-                on: { "close-modal": _vm.closeModal }
-              })
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.isConfirmationModal
-            ? _c("app-confirmation-modal", {
-                attrs: { "is-active": _vm.isConfirmationModal },
-                on: { confirm: _vm.confirmed, cancel: _vm.cancelled }
-              })
-            : _vm._e()
-        ],
-        1
-      )
-    : _vm._e()
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "col-xl-10 col-sm-10 col-md-10",
-        staticStyle: { float: "left", "padding-left": "0px" }
-      },
-      [
-        _c("h3", { staticClass: "header smaller lighter blue" }, [
-          _vm._v("Trash Employee List View")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "clearfix" }, [
-          _c("div", { staticClass: "pull-right tableTools-container" })
-        ])
-      ]
     )
   }
 ]
