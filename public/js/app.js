@@ -59668,7 +59668,7 @@ var render = function() {
                           _c("img", {
                             staticClass: "pdf-icon",
                             staticStyle: { height: "37px", width: "40px" },
-                            attrs: { src: "../storage/" + employee.image_path }
+                            attrs: { src: "/storage/" + employee.image_path }
                           })
                         ]),
                         _vm._v(" "),

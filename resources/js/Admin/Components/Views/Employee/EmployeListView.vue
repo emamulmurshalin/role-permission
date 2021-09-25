@@ -44,7 +44,7 @@
                             <td>{{ employee.skills }}</td>
                             <td>
                                 <img style="height: 37px; width: 40px;" class="pdf-icon"
-                                     :src="'../storage/' + employee.image_path">
+                                     :src="'/storage/' + employee.image_path">
                             </td>
                             <td>
                                 <div class="dropdown">
