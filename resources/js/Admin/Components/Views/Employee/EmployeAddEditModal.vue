@@ -52,6 +52,14 @@
                                     </p>
                                 </div>
                             </div>
+
+                            <div class="form-group row" v-if="imageView">
+                                <label class="col-sm-3 col-form-label"></label>
+                                <div class="col-sm-9">
+                                    <img :src="imageView" alt="" style="width: 50%; height: 100px;">
+                                </div>
+                            </div>
+
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Image</label>
                                 <div class="col-sm-9">
@@ -197,7 +205,8 @@ export default {
 
                 ]
             }),
-            errors:{}
+            errors: {},
+            imageView: null
         }
     },
     methods:{
@@ -251,6 +260,14 @@ export default {
         selectImage(file) {
             if (file == "") return false;
             this.form.image = file.target.files[0];
+
+            //Image show
+            var reader, files = file.target.files;
+            reader = new FileReader();
+            reader.onload = (e) =>{
+                this.imageView = e.target.result;
+            }
+            reader.readAsDataURL(files[0]);
         },
         getEditedData(){
             this.axios.get(this.selectedUrl)

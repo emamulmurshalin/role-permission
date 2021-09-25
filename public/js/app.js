@@ -4294,6 +4294,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "UserAddEditModal",
   props: ['selectedUrl'],
@@ -4305,7 +4313,8 @@ __webpack_require__.r(__webpack_exports__);
         gender: '',
         skills: []
       }),
-      errors: {}
+      errors: {},
+      imageView: null
     };
   },
   methods: {
@@ -4361,15 +4370,27 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     selectImage: function selectImage(file) {
-      if (file == "") return false;
-      this.form.image = file.target.files[0];
-    },
-    getEditedData: function getEditedData() {
       var _this3 = this;
 
+      if (file == "") return false;
+      this.form.image = file.target.files[0]; //Image show
+
+      var reader,
+          files = file.target.files;
+      reader = new FileReader();
+
+      reader.onload = function (e) {
+        _this3.imageView = e.target.result;
+      };
+
+      reader.readAsDataURL(files[0]);
+    },
+    getEditedData: function getEditedData() {
+      var _this4 = this;
+
       this.axios.get(this.selectedUrl).then(function (response) {
-        _this3.form = response.data;
-        _this3.form.skills = response.data.skills.split(",");
+        _this4.form = response.data;
+        _this4.form.skills = response.data.skills.split(",");
       })["catch"](function (error) {});
     }
   },
@@ -58403,6 +58424,19 @@ var render = function() {
                         : _vm._e()
                     ])
                   ]),
+                  _vm._v(" "),
+                  _vm.imageView
+                    ? _c("div", { staticClass: "form-group row" }, [
+                        _c("label", { staticClass: "col-sm-3 col-form-label" }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-sm-9" }, [
+                          _c("img", {
+                            staticStyle: { width: "50%", height: "100px" },
+                            attrs: { src: _vm.imageView, alt: "" }
+                          })
+                        ])
+                      ])
+                    : _vm._e(),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group row" }, [
                     _c("label", { staticClass: "col-sm-3 col-form-label" }, [
