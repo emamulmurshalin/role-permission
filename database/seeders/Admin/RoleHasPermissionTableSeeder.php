@@ -13,17 +13,13 @@ class RoleHasPermissionTableSeeder extends Seeder
 {
     public function run()
     {
-//        $appAdmin = User::find(1);
-//        $manager = User::find(2);
-//        $agent = User::find(3);
-
-        $appAdminRole = Role::where('name', 'App admin')->first();
+//        $appAdminRole = Role::where('name', 'App Admin')->first();
         $managerRole = Role::where('name', 'Manager')->first();
         $agentRole = Role::where('name', 'Agent')->first();
 
-        $appAdminPermission = Permission::pluck('name')->toArray();
-
-        $appAdminRole->givePermissionTo($appAdminPermission);
+//        $appAdminPermission = Permission::pluck('name')->toArray();
+//
+//        $appAdminRole->givePermissionTo($appAdminPermission);
 
         $managerRole->givePermissionTo([
             'dashboard_view',

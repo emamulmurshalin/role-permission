@@ -4565,7 +4565,7 @@ __webpack_require__.r(__webpack_exports__);
     confirmed: function confirmed() {
       var _this = this;
 
-      this.axios["delete"]("employee/".concat(this.deletedId)).then(function (response) {
+      this.axios["delete"]("/employee/".concat(this.deletedId)).then(function (response) {
         if (response.status == 200) {
           _this.$toast.success(response.data.message);
 
@@ -4755,7 +4755,7 @@ __webpack_require__.r(__webpack_exports__);
     confirmed: function confirmed() {
       var _this = this;
 
-      this.axios["delete"]("employee/".concat(this.deletedId)).then(function (response) {
+      this.axios["delete"]("/employee/".concat(this.deletedId)).then(function (response) {
         if (response.status == 200) {
           _this.$toast.success(response.data.message);
 
@@ -4962,7 +4962,7 @@ __webpack_require__.r(__webpack_exports__);
     confirmed: function confirmed() {
       var _this = this;
 
-      this.axios["delete"]("users/".concat(this.deletedId)).then(function (response) {
+      this.axios["delete"]("/users/".concat(this.deletedId)).then(function (response) {
         if (response.status == 200) {
           _this.$toast.success(response.data.message);
 
@@ -59858,7 +59858,7 @@ var render = function() {
             _c(
               "h3",
               { staticClass: "header smaller lighter blue font-color" },
-              [_vm._v("Slider Information")]
+              [_vm._v("Trash employee list view")]
             ),
             _vm._v(" "),
             _vm._m(0),

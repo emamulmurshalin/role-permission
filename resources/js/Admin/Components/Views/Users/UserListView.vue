@@ -138,7 +138,7 @@ export default {
             this.getEmployees();
         },
         confirmed(){
-            this.axios.delete(`users/${this.deletedId}`)
+            this.axios.delete(`/users/${this.deletedId}`)
                 .then((response) => {
                     if(response.status == 200){
                         this.$toast.success(response.data.message);

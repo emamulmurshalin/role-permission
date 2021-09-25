@@ -2,7 +2,7 @@
     <div class="page-content" style="margin: 20px !important;">
         <div class="row">
             <div class="col-xs-12" style="width: 100%;">
-                <h3 class="header smaller lighter blue font-color">Slider Information</h3>
+                <h3 class="header smaller lighter blue font-color">Trash employee list view</h3>
 
                 <div class="clearfix" style="margin-bottom: 14px;">
                     <div class="pull-right tableTools-container"></div>
@@ -142,7 +142,7 @@ export default {
             this.getEmployees();
         },
         confirmed(){
-            this.axios.delete(`employee/${this.deletedId}`)
+            this.axios.delete(`/employee/${this.deletedId}`)
                 .then((response) => {
                     if(response.status == 200){
                         this.$toast.success(response.data.message);
