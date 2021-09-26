@@ -6,10 +6,13 @@
     </div>
     <div class="sidebar-menu-content">
         <ul class="nav nav-sidebar-menu sidebar-toggle-view">
-            <li class="nav-item">
-                <a href="/dashboard" class="nav-link"><i
-                        class="flaticon-dashboard"></i><span>Dashboard</span></a>
-            </li>
+            @can('dashboard_view')
+                <li class="nav-item">
+                    <a href="/dashboard" class="nav-link"><i
+                            class="flaticon-dashboard"></i><span>Dashboard</span></a>
+                </li>
+            @endcan
+
             <li class="nav-item">
                 <a href="/user/list/view" class="nav-link"><i
                         class="flaticon-user"></i><span>Users</span></a>

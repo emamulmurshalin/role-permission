@@ -4881,8 +4881,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "RoleListView",
   data: function data() {
@@ -4960,9 +4958,9 @@ __webpack_require__.r(__webpack_exports__);
     getRoles: function getRoles() {
       var _this2 = this;
 
-      this.axios.get('/roles').then(function (response) {
-        _this2.totalData = response.data.total;
-        _this2.roleData = response.data.data;
+      this.axios.get('/roles').then(function (res) {
+        _this2.totalData = res.data.total;
+        _this2.roleData = res.data.data;
       })["catch"](function () {});
     }
   },
@@ -60499,10 +60497,6 @@ var render = function() {
                       _vm._v(" "),
                       _c("th", { staticClass: "font-color" }, [_vm._v("Role")]),
                       _vm._v(" "),
-                      _c("th", { staticClass: "font-color" }, [
-                        _vm._v("Users")
-                      ]),
-                      _vm._v(" "),
                       _vm.$can("role_update") || _vm.$can("role_delete")
                         ? _c("th", { staticClass: "font-color" }, [
                             _c("i", {
@@ -60527,9 +60521,7 @@ var render = function() {
                           ])
                         ]),
                         _vm._v(" "),
-                        _c("td"),
-                        _vm._v(" "),
-                        _c("td"),
+                        _c("td", [_vm._v(_vm._s(role.name))]),
                         _vm._v(" "),
                         _vm.$can("role_update") || _vm.$can("role_delete")
                           ? _c("td", [
@@ -60950,7 +60942,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(user.email))]),
                         _vm._v(" "),
-                        _c("td"),
+                        _c("td", [_vm._v(_vm._s(user.role_name))]),
                         _vm._v(" "),
                         _vm.$can("user_update") || _vm.$can("user_delete")
                           ? _c("td", [

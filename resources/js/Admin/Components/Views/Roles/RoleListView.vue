@@ -22,7 +22,6 @@
                         <tr>
                             <th class="font-color">ID</th>
                             <th class="font-color">Role</th>
-                            <th class="font-color">Users</th>
                             <th v-if="$can('role_update') || $can('role_delete')" class="font-color">
                                 <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
                                 Action
@@ -35,8 +34,7 @@
                             <td>
                                 <a href="#">{{ role.id }}</a>
                             </td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ role.name }}</td>
                             <td v-if="$can('role_update') || $can('role_delete')">
                                 <div class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"
@@ -153,9 +151,9 @@ export default {
         },
         getRoles(){
             this.axios.get('/roles')
-                .then((response) => {
-                    this.totalData = response.data.total;
-                    this.roleData = response.data.data;
+                .then((res) => {
+                    this.totalData = res.data.total;
+                    this.roleData = res.data.data;
                 }).catch(()=>{
             });
         }

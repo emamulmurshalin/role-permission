@@ -12,4 +12,8 @@ class RoleService
     {
         $this->model = $role;
     }
+    public function showRoles()
+    {
+        return $this->model->paginate(10);
+    }
 }

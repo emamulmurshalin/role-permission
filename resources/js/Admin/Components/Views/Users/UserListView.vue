@@ -39,7 +39,7 @@
                             </td>
                             <td>{{ user.name }}</td>
                             <td>{{ user.email }}</td>
-                            <td></td>
+                            <td>{{ user.role_name }}</td>
                             <td v-if="$can('user_update') || $can('user_delete')">
                                 <div class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"

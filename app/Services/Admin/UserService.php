@@ -5,6 +5,7 @@ namespace App\Services\Admin;
 
 
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Testing\Fluent\Concerns\Has;
 
@@ -16,7 +17,12 @@ class UserService
     }
     public function showUsers()
     {
-        return $this->model->paginate(10);
+        $roleData = DB::table('users')
+            ->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+            ->join('roles', 'model_has_roles.role_id', '=', 'roles.id')
+            ->select('users.*', 'roles.name as role_name')
+            ->paginate();
+        return $roleData;
     }
     public function saveUser($inputData)
     {
