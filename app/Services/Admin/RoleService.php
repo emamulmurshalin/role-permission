@@ -4,6 +4,7 @@
 namespace App\Services\Admin;
 
 
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 
 class RoleService
@@ -31,6 +32,15 @@ class RoleService
                 'message' => 'Role created without permission',
             ];
         }
-
+    }
+    public function detailsRole($id)
+    {
+//        return DB::table('roles')
+//            ->join('role_has_permissions', 'role_has_permissions.role_id', '=', 'roles.id')
+//            ->join('permissions', 'permissions.id', '=', 'role_has_permissions.permission_id')
+//            ->select('roles.*', 'permissions.id', 'permissions.name')
+//            ->where('roles.id', '=', $id)
+//            ->groupByRaw('permissions.name')
+//            ->get();
     }
 }

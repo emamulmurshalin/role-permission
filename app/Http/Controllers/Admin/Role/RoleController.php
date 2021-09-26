@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Role;
 use App\Http\Controllers\Controller;
 use App\Services\Admin\RoleService;
 use Illuminate\Http\Request;
+use function Symfony\Component\Translation\t;
 
 class RoleController extends Controller
 {
@@ -56,7 +57,7 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+        $this->service->detailsRole($id);
     }
 
     /**
