@@ -1,4 +1,11 @@
 <script src="{{ asset('js/app.js') }}"></script>
+<script type="text/javascript">
+    @auth
+        window.getPermission = {!! json_encode(Auth::user()->allPermissions, true) !!};
+    @else
+        window.getPermission = [];
+    @endauth
+</script>
 <!-- jquery-->
 <script src="{{ asset('admin/js/jquery-3.3.1.min.js') }}"></script>
 <!-- Plugins js -->

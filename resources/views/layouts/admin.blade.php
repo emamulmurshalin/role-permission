@@ -33,14 +33,6 @@
 </div>
 @include('layouts.includes.footerjs')
 
-<script type="text/javascript">
-    @auth
-        window.getPermission = {!! json_encode(Auth::user()->allPermissions, true) !!};
-    @else
-        window.getPermission = [];
-    @endauth
-</script>
-
 </body>
 
 </html>

@@ -46,11 +46,11 @@
                                        aria-expanded="false">
                                         <span class="flaticon-more-button-of-three-dots"></span>
                                     </a>
-                                    <div class="dropdown-menu">
+                                    <div class="dropdown-menu action-dropdown">
                                         <a v-if="$can('user_update')" @click="editUser(user.id)" class="dropdown-item" href="#"><i
-                                            class="fas fa-cogs text-dark-pastel-green edit-button"></i>Edit</a>
+                                            class="fas fa-cogs text-dark-pastel-green action-button"></i>Edit</a>
                                         <a v-if="$can('user_delete')" @click.prevent="deleteUser(user.id)" class="dropdown-item" href="#"><i
-                                            class="fas fa-trash text-orange-red edit-button"></i>Delete</a>
+                                            class="fas fa-trash text-orange-red action-button"></i>Delete</a>
                                     </div>
                                 </div>
                             </td>
@@ -169,8 +169,3 @@ export default {
 };
 </script>
 
-<style scoped>
-.edit-button{
-    margin-right: 25px;
-}
-</style>
