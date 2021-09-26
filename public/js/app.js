@@ -5495,6 +5495,29 @@ var onlyTimeFromTime = function onlyTimeFromTime(date, time) {
 
 /***/ }),
 
+/***/ "./resources/js/Admin/Mixin/PermissionMixin.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/Admin/Mixin/PermissionMixin.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  methods: {
+    $can: function $can(permissionName) {
+      if (window.getPermission) {
+        return window.getPermission.indexOf(permissionName) !== -1;
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/Admin/admin.js":
 /*!*************************************!*\
   !*** ./resources/js/Admin/admin.js ***!
@@ -5545,6 +5568,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var _Admin_admin__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Admin/admin */ "./resources/js/Admin/admin.js");
 /* harmony import */ var _Admin_Helpers_Helper__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Admin/Helpers/Helper */ "./resources/js/Admin/Helpers/Helper.js");
+/* harmony import */ var _js_Admin_Mixin_PermissionMixin__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../js/Admin/Mixin/PermissionMixin */ "./resources/js/Admin/Mixin/PermissionMixin.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
@@ -5571,6 +5595,8 @@ window.$this = vue__WEBPACK_IMPORTED_MODULE_3__["default"].use((vue_toast_notifi
 });
 
 
+
+vue__WEBPACK_IMPORTED_MODULE_3__["default"].mixin(_js_Admin_Mixin_PermissionMixin__WEBPACK_IMPORTED_MODULE_12__["default"]);
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"];
 var app = new vue__WEBPACK_IMPORTED_MODULE_3__["default"]({
   el: "#app"
@@ -5674,7 +5700,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.edit-button[data-v-e472fa36]{\r\n    margin-right: 25px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.edit-button[data-v-e472fa36]{\n    margin-right: 25px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -60048,23 +60074,25 @@ var render = function() {
             _vm._v(" "),
             _vm._m(0),
             _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary btn-design",
-                attrs: { "data-toggle": "modal" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    return _vm.openModal.apply(null, arguments)
-                  }
-                }
-              },
-              [
-                _c("i", { staticClass: "fas glyphicon-plus" }),
-                _vm._v("\n                Add new\n            ")
-              ]
-            ),
+            _vm.$can("employee_create")
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary btn-design",
+                    attrs: { "data-toggle": "modal" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.openModal.apply(null, arguments)
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "fas glyphicon-plus" }),
+                    _vm._v("\n                Add new\n            ")
+                  ]
+                )
+              : _vm._e(),
             _vm._v(" "),
             _c("div", [
               _c(

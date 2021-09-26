@@ -21,7 +21,6 @@ Vue.use(VueGoodTablePlugin);
 import Paginate from 'vuejs-paginate'
 Vue.component('paginate', Paginate)
 
-
 import Swal from 'sweetalert2'
 window.swal = Swal;
 window.$this = Vue.use(VueToast, {
@@ -32,6 +31,9 @@ window.$this = Vue.use(VueToast, {
 
 import "./Admin/admin";
 import "./Admin/Helpers/Helper";
+
+import Permissions from '../js/Admin/Mixin/PermissionMixin';
+Vue.mixin(Permissions);
 
 window.Vue = require('vue').default;
 

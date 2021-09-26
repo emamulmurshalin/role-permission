@@ -8,7 +8,7 @@
                     <div class="pull-right tableTools-container"></div>
                 </div>
 
-                <button @click.prevent="openModal" data-toggle="modal" class="btn btn-primary btn-design">
+                <button v-if="$can('employee_create')" @click.prevent="openModal" data-toggle="modal" class="btn btn-primary btn-design">
                     <i class="fas glyphicon-plus"></i>
                     Add new
                 </button>

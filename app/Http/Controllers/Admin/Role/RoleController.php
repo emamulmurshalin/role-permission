@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\Admin\Role;
 
 use App\Http\Controllers\Controller;
+use App\Services\Admin\RoleService;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
+    public function __construct(RoleService $roleService)
+    {
+        $this->service = $roleService;
+    }
     /**
      * Display a listing of the resource.
      *
