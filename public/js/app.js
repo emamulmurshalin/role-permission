@@ -5039,6 +5039,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "RoleModal",
   props: ['selectedUrl'],
@@ -5046,8 +5070,10 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: new Form({
         name: '',
-        roles: []
+        guard_name: 'sanctum',
+        permissions: []
       }),
+      permissions: [],
       errors: {}
     };
   },
@@ -5087,9 +5113,18 @@ __webpack_require__.r(__webpack_exports__);
       this.axios.get(this.selectedUrl).then(function (response) {
         _this3.form = response.data;
       })["catch"](function (error) {});
+    },
+    getRolePermissions: function getRolePermissions() {
+      var _this4 = this;
+
+      this.axios.get('/all-permissions').then(function (response) {
+        _this4.permissions = response.data;
+      })["catch"](function (error) {});
     }
   },
   created: function created() {
+    this.getRolePermissions();
+
     if (this.selectedUrl) {
       this.getEditedData();
     }
@@ -58657,7 +58692,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _RoleModal_vue_vue_type_template_id_a314bf6e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RoleModal.vue?vue&type=template&id=a314bf6e&scoped=true& */ "./resources/js/Admin/Components/Views/Roles/RoleModal.vue?vue&type=template&id=a314bf6e&scoped=true&");
+/* harmony import */ var _RoleModal_vue_vue_type_template_id_a314bf6e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RoleModal.vue?vue&type=template&id=a314bf6e& */ "./resources/js/Admin/Components/Views/Roles/RoleModal.vue?vue&type=template&id=a314bf6e&");
 /* harmony import */ var _RoleModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RoleModal.vue?vue&type=script&lang=js& */ "./resources/js/Admin/Components/Views/Roles/RoleModal.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -58669,11 +58704,11 @@ __webpack_require__.r(__webpack_exports__);
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _RoleModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _RoleModal_vue_vue_type_template_id_a314bf6e_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
-  _RoleModal_vue_vue_type_template_id_a314bf6e_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _RoleModal_vue_vue_type_template_id_a314bf6e___WEBPACK_IMPORTED_MODULE_0__.render,
+  _RoleModal_vue_vue_type_template_id_a314bf6e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
-  "a314bf6e",
+  null,
   null
   
 )
@@ -59035,19 +59070,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/Admin/Components/Views/Roles/RoleModal.vue?vue&type=template&id=a314bf6e&scoped=true&":
-/*!************************************************************************************************************!*\
-  !*** ./resources/js/Admin/Components/Views/Roles/RoleModal.vue?vue&type=template&id=a314bf6e&scoped=true& ***!
-  \************************************************************************************************************/
+/***/ "./resources/js/Admin/Components/Views/Roles/RoleModal.vue?vue&type=template&id=a314bf6e&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/Admin/Components/Views/Roles/RoleModal.vue?vue&type=template&id=a314bf6e& ***!
+  \************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RoleModal_vue_vue_type_template_id_a314bf6e_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RoleModal_vue_vue_type_template_id_a314bf6e_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RoleModal_vue_vue_type_template_id_a314bf6e___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RoleModal_vue_vue_type_template_id_a314bf6e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RoleModal_vue_vue_type_template_id_a314bf6e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./RoleModal.vue?vue&type=template&id=a314bf6e&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Admin/Components/Views/Roles/RoleModal.vue?vue&type=template&id=a314bf6e&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RoleModal_vue_vue_type_template_id_a314bf6e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./RoleModal.vue?vue&type=template&id=a314bf6e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Admin/Components/Views/Roles/RoleModal.vue?vue&type=template&id=a314bf6e&");
 
 
 /***/ }),
@@ -60691,10 +60726,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Admin/Components/Views/Roles/RoleModal.vue?vue&type=template&id=a314bf6e&scoped=true&":
-/*!***************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Admin/Components/Views/Roles/RoleModal.vue?vue&type=template&id=a314bf6e&scoped=true& ***!
-  \***************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Admin/Components/Views/Roles/RoleModal.vue?vue&type=template&id=a314bf6e&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Admin/Components/Views/Roles/RoleModal.vue?vue&type=template&id=a314bf6e& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -60809,6 +60844,112 @@ var render = function() {
                             ]
                           )
                         : _vm._e()
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c("label", { staticClass: "col-sm-3 col-form-label" }, [
+                      _vm._v("Permissions")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-9" }, [
+                      _c("div", { staticClass: "col-xs-12 col-sm-5" }, [
+                        _c(
+                          "div",
+                          { staticClass: "control-group" },
+                          [
+                            _vm._l(_vm.permissions, function(permission) {
+                              return _c("div", { staticClass: "checkbox" }, [
+                                _c("label", [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.permissions,
+                                        expression: "form.permissions"
+                                      }
+                                    ],
+                                    staticClass: "ace",
+                                    attrs: {
+                                      name: "form-field-checkbox",
+                                      type: "checkbox"
+                                    },
+                                    domProps: {
+                                      value: permission.id,
+                                      checked: Array.isArray(
+                                        _vm.form.permissions
+                                      )
+                                        ? _vm._i(
+                                            _vm.form.permissions,
+                                            permission.id
+                                          ) > -1
+                                        : _vm.form.permissions
+                                    },
+                                    on: {
+                                      change: function($event) {
+                                        var $$a = _vm.form.permissions,
+                                          $$el = $event.target,
+                                          $$c = $$el.checked ? true : false
+                                        if (Array.isArray($$a)) {
+                                          var $$v = permission.id,
+                                            $$i = _vm._i($$a, $$v)
+                                          if ($$el.checked) {
+                                            $$i < 0 &&
+                                              _vm.$set(
+                                                _vm.form,
+                                                "permissions",
+                                                $$a.concat([$$v])
+                                              )
+                                          } else {
+                                            $$i > -1 &&
+                                              _vm.$set(
+                                                _vm.form,
+                                                "permissions",
+                                                $$a
+                                                  .slice(0, $$i)
+                                                  .concat($$a.slice($$i + 1))
+                                              )
+                                          }
+                                        } else {
+                                          _vm.$set(_vm.form, "permissions", $$c)
+                                        }
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("span", { staticClass: "lbl" }, [
+                                    _vm._v(" " + _vm._s(permission.name))
+                                  ])
+                                ])
+                              ])
+                            }),
+                            _vm._v(" "),
+                            _vm.errors.roles
+                              ? _c(
+                                  "p",
+                                  {
+                                    staticClass:
+                                      "text-danger col-sm-12 mt-2 mb-0 float-right",
+                                    staticStyle: {
+                                      "padding-left": "0px",
+                                      "font-size": "14px",
+                                      "margin-top": "3px"
+                                    }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                            " +
+                                        _vm._s(_vm.errors.roles[0]) +
+                                        "\n                                        "
+                                    )
+                                  ]
+                                )
+                              : _vm._e()
+                          ],
+                          2
+                        )
+                      ])
                     ])
                   ])
                 ])

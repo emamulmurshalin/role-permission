@@ -35,6 +35,30 @@
 
                             </div>
 
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Permissions</label>
+                                <div class="col-sm-9">
+                                    <div class="col-xs-12 col-sm-5">
+                                        <div class="control-group">
+                                            <div class="checkbox" v-for="permission in permissions">
+                                                <label>
+                                                    <input name="form-field-checkbox" v-model="form.permissions" :value="permission.id" type="checkbox" class="ace" />
+                                                    <span class="lbl"> {{ permission.name }}</span>
+                                                </label>
+                                            </div>
+                                            <p
+                                                v-if="errors.roles"
+                                                class="text-danger col-sm-12 mt-2 mb-0 float-right"
+                                                style="padding-left: 0px;
+                                                font-size: 14px;
+                                                margin-top: 3px;"
+                                            >
+                                                {{ errors.roles[0] }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <!-- /.card-body -->
                     </form>
@@ -63,8 +87,10 @@ export default {
         return{
             form: new Form({
                 name: '',
-                roles: []
+                guard_name: 'sanctum',
+                permissions: []
             }),
+            permissions: [],
             errors: {},
         }
     },
@@ -101,17 +127,22 @@ export default {
                 }).catch((error) => {
 
             });
+        },
+        getRolePermissions(){
+            this.axios.get('/all-permissions')
+                .then((response) => {
+                    this.permissions = response.data;
+                }).catch((error) => {
+
+            });
         }
     },
     created() {
+        this.getRolePermissions();
         if (this.selectedUrl){
             this.getEditedData();
         }
     }
 }
 </script>
-
-<style scoped>
-
-</style>
 

@@ -40,7 +40,12 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|regex:/^[\pL\s\-]+$/u',
+            'permissions' => 'required'
+        ]);
+
+        return $this->service->saveRole($request->all());
     }
 
     /**
