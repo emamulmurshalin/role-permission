@@ -6,6 +6,7 @@ namespace App\Services\Admin;
 
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
+use function Symfony\Component\String\u;
 
 class RoleService
 {
@@ -42,5 +43,23 @@ class RoleService
 //            ->where('roles.id', '=', $id)
 //            ->groupByRaw('permissions.name')
 //            ->get();
+    }
+    public function deleteRole($id)
+    {
+        $role = $this->model->findOrFail($id);
+        if ($role->name == 'App Admin'){
+            return [
+                'status' => 200,
+                'message' => 'Permission denied',
+            ];
+        }
+        $dataDeleted = $role->delete();
+
+        if ($dataDeleted){
+            return [
+                'status' => 200,
+                'message' => 'Role deleted successfully',
+            ];
+        }
     }
 }
