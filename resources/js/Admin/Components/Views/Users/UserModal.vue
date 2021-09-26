@@ -53,6 +53,28 @@
                                 </div>
                             </div>
 
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Role</label>
+                                <div class="col-sm-9">
+                                    <select v-model="form.role_id" class="form-control">
+                                        <option class="disabled">Please Select Role *</option>
+                                        <option v-for="(role, index) in roles"
+                                                v-bind:value="role.id" :key="index"
+                                                :selected="index === 0 ? 'selected' : ''">
+                                            {{role.name}}
+                                        </option>
+                                    </select>
+                                    <p
+                                        v-if="errors.role_id"
+                                        class="text-danger col-sm-12 mt-2 mb-0 float-right"
+                                        style="padding-left: 0px;
+                                        font-size: 14px;
+                                        margin-top: 3px;"
+                                    >
+                                        {{ errors.role_id[0] }}
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                         <!-- /.card-body -->
                     </form>
@@ -81,9 +103,11 @@ export default {
         return{
             form: new Form({
                 name: '',
-                email: ''
+                email: '',
+                role_id: ''
             }),
             errors: {},
+            roles: {},
         }
     },
     methods:{
@@ -119,9 +143,18 @@ export default {
                 }).catch((error) => {
 
             });
+        },
+        getRoles(){
+            this.axios.get('/roles')
+                .then((response) => {
+                    this.roles = response.data.data;
+                }).catch((error) => {
+
+            });
         }
     },
     created() {
+        this.getRoles();
         if (this.selectedUrl){
             this.getEditedData();
         }

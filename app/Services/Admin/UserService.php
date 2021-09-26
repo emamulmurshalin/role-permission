@@ -17,18 +17,18 @@ class UserService
     }
     public function showUsers()
     {
-        $roleData = DB::table('users')
+        return DB::table('users')
             ->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
             ->join('roles', 'model_has_roles.role_id', '=', 'roles.id')
-            ->select('users.*', 'roles.name as role_name')
+            ->select('users.*', 'roles.name as role_name', 'roles.id as role_id')
             ->paginate();
-        return $roleData;
     }
     public function saveUser($inputData)
     {
         $inputData['password'] = Hash::make('123456');
-        $dataSaved = $this->model->create($inputData);
-        if ($dataSaved) {
+        $user = $this->model->create($inputData);
+        $user->assignRole($inputData['role_id']);
+        if ($user) {
             return [
                 'status' => 200,
                 'message' => 'User created successfully',
@@ -37,7 +37,12 @@ class UserService
     }
     public function detailsUser($id)
     {
-        return $this->model->findOrFail($id);
+        return DB::table('users')
+            ->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+            ->join('roles', 'model_has_roles.role_id', '=', 'roles.id')
+            ->select('users.*', 'roles.name as role_name', 'roles.id as role_id')
+            ->where('users.id', '=', $id)
+            ->first();
     }
     public function deleteUser($id)
     {
@@ -56,6 +61,7 @@ class UserService
         $inputData['password'] = Hash::make('123456');
         $user = $this->model->findOrFail($id);
         $dataSaved = $user->update($inputData);
+        $user->syncRoles([$inputData['role_id']]);
         if ($dataSaved){
             return [
                 'status' => 200,

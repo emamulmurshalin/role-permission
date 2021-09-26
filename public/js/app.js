@@ -5371,6 +5371,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "UserModal",
   props: ['selectedUrl'],
@@ -5378,9 +5400,11 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: new Form({
         name: '',
-        email: ''
+        email: '',
+        role_id: ''
       }),
-      errors: {}
+      errors: {},
+      roles: {}
     };
   },
   methods: {
@@ -5419,9 +5443,18 @@ __webpack_require__.r(__webpack_exports__);
       this.axios.get(this.selectedUrl).then(function (response) {
         _this3.form = response.data;
       })["catch"](function (error) {});
+    },
+    getRoles: function getRoles() {
+      var _this4 = this;
+
+      this.axios.get('/roles').then(function (response) {
+        _this4.roles = response.data.data;
+      })["catch"](function (error) {});
     }
   },
   created: function created() {
+    this.getRoles();
+
     if (this.selectedUrl) {
       this.getEditedData();
     }
@@ -61250,6 +61283,96 @@ var render = function() {
                               _vm._v(
                                 "\n                                    " +
                                   _vm._s(_vm.errors.email[0]) +
+                                  "\n                                "
+                              )
+                            ]
+                          )
+                        : _vm._e()
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c("label", { staticClass: "col-sm-3 col-form-label" }, [
+                      _vm._v("Role")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-sm-9" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.role_id,
+                              expression: "form.role_id"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.form,
+                                "role_id",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { staticClass: "disabled" }, [
+                            _vm._v("Please Select Role *")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.roles, function(role, index) {
+                            return _c(
+                              "option",
+                              {
+                                key: index,
+                                domProps: {
+                                  value: role.id,
+                                  selected: index === 0 ? "selected" : ""
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(role.name) +
+                                    "\n                                    "
+                                )
+                              ]
+                            )
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.role_id
+                        ? _c(
+                            "p",
+                            {
+                              staticClass:
+                                "text-danger col-sm-12 mt-2 mb-0 float-right",
+                              staticStyle: {
+                                "padding-left": "0px",
+                                "font-size": "14px",
+                                "margin-top": "3px"
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(_vm.errors.role_id[0]) +
                                   "\n                                "
                               )
                             ]
