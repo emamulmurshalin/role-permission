@@ -8,7 +8,7 @@
                     <div class="pull-right tableTools-container"></div>
                 </div>
 
-                <button @click.prevent="openModal" data-toggle="modal" class="btn btn-primary btn-design">
+                <button v-if="$can('role_create')" @click.prevent="openModal" data-toggle="modal" class="btn btn-primary btn-design">
                     <i class="fas glyphicon-plus"></i>
                     Add new
                 </button>
@@ -23,7 +23,7 @@
                             <th class="font-color">ID</th>
                             <th class="font-color">Role</th>
                             <th class="font-color">Users</th>
-                            <th class="font-color">
+                            <th v-if="$can('role_update') || $can('role_delete')" class="font-color">
                                 <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
                                 Action
                             </th>
@@ -37,16 +37,16 @@
                             </td>
                             <td></td>
                             <td></td>
-                            <td>
+                            <td v-if="$can('role_update') || $can('role_delete')">
                                 <div class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                                        aria-expanded="false">
                                         <span class="flaticon-more-button-of-three-dots"></span>
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a @click="editRole(role.id)" class="dropdown-item" href="#"><i
+                                        <a v-if="$can('role_update')" @click="editRole(role.id)" class="dropdown-item" href="#"><i
                                             class="fas fa-cogs text-dark-pastel-green edit-button"></i>Edit</a>
-                                        <a @click.prevent="deleteRole(role.id)" class="dropdown-item" href="#"><i
+                                        <a v-if="$can('role_delete')" @click.prevent="deleteRole(role.id)" class="dropdown-item" href="#"><i
                                             class="fas fa-trash text-orange-red edit-button"></i>Delete</a>
                                     </div>
                                 </div>
