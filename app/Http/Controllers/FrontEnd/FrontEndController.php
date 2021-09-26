@@ -19,4 +19,8 @@ class FrontEndController extends Controller
     {
         return view('admin.user.show-user');
     }
+    public function roleListView()
+    {
+        return view('admin.user.show-role');
+    }
 }

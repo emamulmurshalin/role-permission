@@ -33,3 +33,13 @@ Vue.component(
     'user-add-edit-modal',
     require('./Components/Views/Users/UserModal').default
 );
+
+//Roles
+Vue.component(
+    'show-all-role',
+    require('./Components/Views/Roles/RoleListView').default
+);
+Vue.component(
+    'role-add-edit-modal',
+    require('./Components/Views/Roles/RoleModal').default
+);

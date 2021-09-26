@@ -30,11 +30,6 @@ window.$this = Vue.use(VueToast, {
     duration: 1000
 })
 
-Vue.component(
-    'test-demo',
-    require('./Admin/Components/Views/Test').default
-);
-
 import "./Admin/admin";
 import "./Admin/Helpers/Helper";
 

@@ -25,3 +25,4 @@ require __DIR__.'/auth.php';
 require __DIR__.'/admin/employee.php';
 require __DIR__.'/admin/user.php';
 require __DIR__.'/admin/frontEnd.php';
+require __DIR__.'/admin/role.php';

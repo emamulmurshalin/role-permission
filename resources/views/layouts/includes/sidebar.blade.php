@@ -15,6 +15,10 @@
                         class="flaticon-user"></i><span>Users</span></a>
             </li>
             <li class="nav-item">
+                <a href="/role/list/view" class="nav-link"><i
+                        class="flaticon-user"></i><span>Roles</span></a>
+            </li>
+            <li class="nav-item">
                 <a href="/employee/list/view" class="nav-link"><i
                         class="flaticon-classmates"></i><span>Employees</span></a>
             </li>

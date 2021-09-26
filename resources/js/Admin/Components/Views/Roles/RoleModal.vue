@@ -1,13 +1,13 @@
 <template>
-    <div id="user-modal" class="modal fade bd-example-modal-lg"
+    <div id="role-modal" class="modal fade bd-example-modal-lg"
          tabindex="-1" role="dialog"
          aria-labelledby="myLargeModalLabel"
          aria-hidden="true">
         <div class="modal-dialog mt-0 modal-lg modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 v-if="selectedUrl" class="modal-title">Edit user</h5>
-                    <h5 v-else class="modal-title">Add user</h5>
+                    <h5 v-if="selectedUrl" class="modal-title">Edit role</h5>
+                    <h5 v-else class="modal-title">Add role</h5>
                     <button type="button" class="close" @click.prevent="closeModal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -16,7 +16,7 @@
                     <form role="form" id="quickForm">
                         <div class="card-body">
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Name</label>
+                                <label class="col-sm-3 col-form-label">Role name</label>
                                 <div class="col-sm-9">
                                     <input type="text"
                                            v-model="form.name"
@@ -33,24 +33,6 @@
                                     </p>
                                 </div>
 
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Email</label>
-                                <div class="col-sm-9">
-                                    <input type="text"
-                                           v-model="form.email"
-                                           class="form-control"
-                                           placeholder="Enter email">
-                                    <p
-                                        v-if="errors.email"
-                                        class="text-danger col-sm-12 mt-2 mb-0 float-right"
-                                        style="padding-left: 0px;
-                                        font-size: 14px;
-                                        margin-top: 3px;"
-                                    >
-                                        {{ errors.email[0] }}
-                                    </p>
-                                </div>
                             </div>
 
                         </div>
@@ -75,13 +57,13 @@
 
 <script>
 export default {
-    name: "UserModal",
+    name: "RoleModal",
     props:['selectedUrl'],
     data(){
         return{
             form: new Form({
                 name: '',
-                email: ''
+                roles: []
             }),
             errors: {},
         }
@@ -91,7 +73,7 @@ export default {
             this.$emit("close-modal");
         },
         submit(){
-            this.axios.post('/users', this.form)
+            this.axios.post('/roles', this.form)
                 .then((response) => {
                     if (response.status == 200){
                         this.$toast.success(response.data.message);

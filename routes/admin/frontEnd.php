@@ -13,3 +13,7 @@ Route::get('/soft-delete-employees', [FrontEndController::class, 'trashEmployeeL
 //User
 Route::get('/user/list/view', [FrontEndController::class, 'userListView'])
     ->name('user.list_view');
+
+//Roles
+Route::get('/role/list/view', [FrontEndController::class, 'roleListView'])
+    ->name('role.list_view');
