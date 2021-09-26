@@ -124,6 +124,9 @@ export default {
             this.axios.get(this.selectedUrl)
                 .then((response) => {
                     this.form = response.data;
+                    this.form.permissions = this.form.permissions.map((item)=>{
+                        return item.id;
+                    });
                 }).catch((error) => {
 
             });

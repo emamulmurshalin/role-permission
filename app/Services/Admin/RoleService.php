@@ -34,16 +34,6 @@ class RoleService
             ];
         }
     }
-    public function detailsRole($id)
-    {
-//        return DB::table('roles')
-//            ->join('role_has_permissions', 'role_has_permissions.role_id', '=', 'roles.id')
-//            ->join('permissions', 'permissions.id', '=', 'role_has_permissions.permission_id')
-//            ->select('roles.*', 'permissions.id', 'permissions.name')
-//            ->where('roles.id', '=', $id)
-//            ->groupByRaw('permissions.name')
-//            ->get();
-    }
     public function deleteRole($id)
     {
         $role = $this->model->findOrFail($id);

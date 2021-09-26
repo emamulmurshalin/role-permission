@@ -5112,6 +5112,9 @@ __webpack_require__.r(__webpack_exports__);
 
       this.axios.get(this.selectedUrl).then(function (response) {
         _this3.form = response.data;
+        _this3.form.permissions = _this3.form.permissions.map(function (item) {
+          return item.id;
+        });
       })["catch"](function (error) {});
     },
     getRolePermissions: function getRolePermissions() {
