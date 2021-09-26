@@ -5480,6 +5480,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.axios.get(this.selectedUrl).then(function (response) {
         _this3.form = response.data;
+        _this3.form.role_id = _this3.form.roles[0].id;
       })["catch"](function (error) {});
     },
     getRoles: function getRoles() {

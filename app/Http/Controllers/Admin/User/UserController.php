@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Services\Admin\UserService;
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\This;
@@ -57,7 +58,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return $this->service->detailsUser($id);
+        return User::with('roles')->where('id', '=', $id)->first();
     }
 
     /**

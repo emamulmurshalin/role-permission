@@ -140,6 +140,7 @@ export default {
             this.axios.get(this.selectedUrl)
                 .then((response) => {
                     this.form = response.data;
+                    this.form.role_id = this.form.roles[0].id;
                 }).catch((error) => {
 
             });
