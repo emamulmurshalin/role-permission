@@ -81,7 +81,7 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $this->service->updateRole($request->all(), $id);
     }
 
     /**

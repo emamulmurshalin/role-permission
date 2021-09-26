@@ -52,4 +52,16 @@ class RoleService
             ];
         }
     }
+    public function updateRole($inputData, $id)
+    {
+        $role = $this->model->findOrFail($id);
+        $updateRole = $role->syncPermissions($inputData['permissions']);
+
+        if ($updateRole){
+            return [
+                'status' => 200,
+                'message' => 'Role updated successfully',
+            ];
+        }
+    }
 }
