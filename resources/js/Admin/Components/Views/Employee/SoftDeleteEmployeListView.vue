@@ -8,8 +8,8 @@
                     <div class="pull-right tableTools-container"></div>
                 </div>
 
-                <button style="float: right; margin-bottom: 15px; padding: 8px; font-size: 16px;"
-                        @click.prevent="openModal" data-toggle="modal" class="btn btn-primary">
+                <button v-if="$can('employee_create')"
+                        @click.prevent="openModal" data-toggle="modal" class="btn btn-primary btn-design">
                     <i class="fas glyphicon-plus"></i>
                     Add new
                 </button>
@@ -25,7 +25,7 @@
                             <th class="font-color">Name</th>
                             <th class="font-color">Email</th>
                             <th class="font-color">Image</th>
-                            <th class="font-color">
+                            <th class="font-color" v-if="$can('employee_update') || $can('employee_delete')">
                                 <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
                                 Action
                             </th>
@@ -43,16 +43,16 @@
                                 <img style="height: 37px; width: 40px;" class="pdf-icon"
                                      :src="'../storage/' + employee.image_path">
                             </td>
-                            <td>
+                            <td v-if="$can('employee_update') || $can('employee_delete')">
                                 <div class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                                        aria-expanded="false">
                                         <span class="flaticon-more-button-of-three-dots"></span>
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a @click="editEmployee(employee.id)" class="dropdown-item" href="#"><i
+                                        <a v-if="$can('employee_update')" @click="editEmployee(employee.id)" class="dropdown-item" href="#"><i
                                             class="fas fa-cogs text-dark-pastel-green edit-button"></i>Edit</a>
-                                        <a @click.prevent="deleteEmployee(employee.id)" class="dropdown-item" href="#"><i
+                                        <a v-if="$can('employee_delete')" @click.prevent="deleteEmployee(employee.id)" class="dropdown-item" href="#"><i
                                             class="fas fa-trash text-orange-red edit-button"></i>Delete</a>
                                     </div>
                                 </div>

@@ -4507,6 +4507,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'EmployeeListView',
   data: function data() {
@@ -5109,6 +5111,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
 //
 //
 //
@@ -60102,7 +60105,41 @@ var render = function() {
                   attrs: { id: "dynamic-table" }
                 },
                 [
-                  _vm._m(1),
+                  _c("thead", [
+                    _c("tr", [
+                      _c("th", { staticClass: "font-color" }, [_vm._v("ID")]),
+                      _vm._v(" "),
+                      _c("th", { staticClass: "font-color" }, [_vm._v("Name")]),
+                      _vm._v(" "),
+                      _c("th", { staticClass: "font-color" }, [
+                        _vm._v("Email")
+                      ]),
+                      _vm._v(" "),
+                      _c("th", { staticClass: "font-color" }, [
+                        _vm._v("Gender")
+                      ]),
+                      _vm._v(" "),
+                      _c("th", { staticClass: "font-color" }, [
+                        _vm._v("Skills")
+                      ]),
+                      _vm._v(" "),
+                      _c("th", { staticClass: "font-color" }, [
+                        _vm._v("Image")
+                      ]),
+                      _vm._v(" "),
+                      _vm.$can("employee_update") || _vm.$can("employee_delete")
+                        ? _c("th", { staticClass: "font-color" }, [
+                            _c("i", {
+                              staticClass:
+                                "ace-icon fa fa-clock-o bigger-110 hidden-480"
+                            }),
+                            _vm._v(
+                              "\n                            Action\n                        "
+                            )
+                          ])
+                        : _vm._e()
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -60130,54 +60167,65 @@ var render = function() {
                           })
                         ]),
                         _vm._v(" "),
-                        _c("td", [
-                          _c("div", { staticClass: "dropdown" }, [
-                            _vm._m(2, true),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "dropdown-menu" }, [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "dropdown-item",
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.editEmployee(employee.id)
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("i", {
-                                    staticClass:
-                                      "fas fa-cogs text-dark-pastel-green edit-button"
-                                  }),
-                                  _vm._v("Edit")
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "dropdown-item",
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      return _vm.deleteEmployee(employee.id)
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("i", {
-                                    staticClass:
-                                      "fas fa-trash text-orange-red edit-button"
-                                  }),
-                                  _vm._v("Delete")
-                                ]
-                              )
+                        _vm.$can("employee_update") ||
+                        _vm.$can("employee_delete")
+                          ? _c("td", [
+                              _c("div", { staticClass: "dropdown" }, [
+                                _vm._m(1, true),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "dropdown-menu" }, [
+                                  _vm.$can("employee_update")
+                                    ? _c(
+                                        "a",
+                                        {
+                                          staticClass: "dropdown-item",
+                                          attrs: { href: "#" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.editEmployee(
+                                                employee.id
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass:
+                                              "fas fa-cogs text-dark-pastel-green edit-button"
+                                          }),
+                                          _vm._v("Edit")
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.$can("employee_delete")
+                                    ? _c(
+                                        "a",
+                                        {
+                                          staticClass: "dropdown-item",
+                                          attrs: { href: "#" },
+                                          on: {
+                                            click: function($event) {
+                                              $event.preventDefault()
+                                              return _vm.deleteEmployee(
+                                                employee.id
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass:
+                                              "fas fa-trash text-orange-red edit-button"
+                                          }),
+                                          _vm._v("Delete")
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ])
+                              ])
                             ])
-                          ])
-                        ])
+                          : _vm._e()
                       ])
                     }),
                     0
@@ -60234,35 +60282,6 @@ var staticRenderFns = [
       { staticClass: "clearfix", staticStyle: { "margin-bottom": "14px" } },
       [_c("div", { staticClass: "pull-right tableTools-container" })]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", { staticClass: "font-color" }, [_vm._v("ID")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "font-color" }, [_vm._v("Name")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "font-color" }, [_vm._v("Email")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "font-color" }, [_vm._v("Gender")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "font-color" }, [_vm._v("Skills")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "font-color" }, [_vm._v("Image")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "font-color" }, [
-          _c("i", {
-            staticClass: "ace-icon fa fa-clock-o bigger-110 hidden-480"
-          }),
-          _vm._v(
-            "\n                            Action\n                        "
-          )
-        ])
-      ])
-    ])
   },
   function() {
     var _vm = this
@@ -60321,29 +60340,25 @@ var render = function() {
             _vm._v(" "),
             _vm._m(0),
             _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary",
-                staticStyle: {
-                  float: "right",
-                  "margin-bottom": "15px",
-                  padding: "8px",
-                  "font-size": "16px"
-                },
-                attrs: { "data-toggle": "modal" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    return _vm.openModal.apply(null, arguments)
-                  }
-                }
-              },
-              [
-                _c("i", { staticClass: "fas glyphicon-plus" }),
-                _vm._v("\n                Add new\n            ")
-              ]
-            ),
+            _vm.$can("employee_create")
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary btn-design",
+                    attrs: { "data-toggle": "modal" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.openModal.apply(null, arguments)
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "fas glyphicon-plus" }),
+                    _vm._v("\n                Add new\n            ")
+                  ]
+                )
+              : _vm._e(),
             _vm._v(" "),
             _c("div", [
               _c(
@@ -60353,7 +60368,33 @@ var render = function() {
                   attrs: { id: "dynamic-table" }
                 },
                 [
-                  _vm._m(1),
+                  _c("thead", [
+                    _c("tr", [
+                      _c("th", { staticClass: "font-color" }, [_vm._v("ID")]),
+                      _vm._v(" "),
+                      _c("th", { staticClass: "font-color" }, [_vm._v("Name")]),
+                      _vm._v(" "),
+                      _c("th", { staticClass: "font-color" }, [
+                        _vm._v("Email")
+                      ]),
+                      _vm._v(" "),
+                      _c("th", { staticClass: "font-color" }, [
+                        _vm._v("Image")
+                      ]),
+                      _vm._v(" "),
+                      _vm.$can("employee_update") || _vm.$can("employee_delete")
+                        ? _c("th", { staticClass: "font-color" }, [
+                            _c("i", {
+                              staticClass:
+                                "ace-icon fa fa-clock-o bigger-110 hidden-480"
+                            }),
+                            _vm._v(
+                              "\n                            Action\n                        "
+                            )
+                          ])
+                        : _vm._e()
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -60377,54 +60418,65 @@ var render = function() {
                           })
                         ]),
                         _vm._v(" "),
-                        _c("td", [
-                          _c("div", { staticClass: "dropdown" }, [
-                            _vm._m(2, true),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "dropdown-menu" }, [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "dropdown-item",
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.editEmployee(employee.id)
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("i", {
-                                    staticClass:
-                                      "fas fa-cogs text-dark-pastel-green edit-button"
-                                  }),
-                                  _vm._v("Edit")
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "dropdown-item",
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      return _vm.deleteEmployee(employee.id)
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("i", {
-                                    staticClass:
-                                      "fas fa-trash text-orange-red edit-button"
-                                  }),
-                                  _vm._v("Delete")
-                                ]
-                              )
+                        _vm.$can("employee_update") ||
+                        _vm.$can("employee_delete")
+                          ? _c("td", [
+                              _c("div", { staticClass: "dropdown" }, [
+                                _vm._m(1, true),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "dropdown-menu" }, [
+                                  _vm.$can("employee_update")
+                                    ? _c(
+                                        "a",
+                                        {
+                                          staticClass: "dropdown-item",
+                                          attrs: { href: "#" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.editEmployee(
+                                                employee.id
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass:
+                                              "fas fa-cogs text-dark-pastel-green edit-button"
+                                          }),
+                                          _vm._v("Edit")
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.$can("employee_delete")
+                                    ? _c(
+                                        "a",
+                                        {
+                                          staticClass: "dropdown-item",
+                                          attrs: { href: "#" },
+                                          on: {
+                                            click: function($event) {
+                                              $event.preventDefault()
+                                              return _vm.deleteEmployee(
+                                                employee.id
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass:
+                                              "fas fa-trash text-orange-red edit-button"
+                                          }),
+                                          _vm._v("Delete")
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ])
+                              ])
                             ])
-                          ])
-                        ])
+                          : _vm._e()
                       ])
                     }),
                     0
@@ -60481,31 +60533,6 @@ var staticRenderFns = [
       { staticClass: "clearfix", staticStyle: { "margin-bottom": "14px" } },
       [_c("div", { staticClass: "pull-right tableTools-container" })]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", { staticClass: "font-color" }, [_vm._v("ID")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "font-color" }, [_vm._v("Name")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "font-color" }, [_vm._v("Email")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "font-color" }, [_vm._v("Image")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "font-color" }, [
-          _c("i", {
-            staticClass: "ace-icon fa fa-clock-o bigger-110 hidden-480"
-          }),
-          _vm._v(
-            "\n                            Action\n                        "
-          )
-        ])
-      ])
-    ])
   },
   function() {
     var _vm = this
@@ -60974,23 +61001,25 @@ var render = function() {
             _vm._v(" "),
             _vm._m(0),
             _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary btn-design",
-                attrs: { "data-toggle": "modal" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    return _vm.openModal.apply(null, arguments)
-                  }
-                }
-              },
-              [
-                _c("i", { staticClass: "fas glyphicon-plus" }),
-                _vm._v("\n                Add new\n            ")
-              ]
-            ),
+            _vm.$can("user_create")
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary btn-design",
+                    attrs: { "data-toggle": "modal" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.openModal.apply(null, arguments)
+                      }
+                    }
+                  },
+                  [
+                    _c("i", { staticClass: "fas glyphicon-plus" }),
+                    _vm._v("\n                Add new\n            ")
+                  ]
+                )
+              : _vm._e(),
             _vm._v(" "),
             _c("div", [
               _c(
@@ -61000,7 +61029,31 @@ var render = function() {
                   attrs: { id: "dynamic-table" }
                 },
                 [
-                  _vm._m(1),
+                  _c("thead", [
+                    _c("tr", [
+                      _c("th", { staticClass: "font-color" }, [_vm._v("ID")]),
+                      _vm._v(" "),
+                      _c("th", { staticClass: "font-color" }, [_vm._v("Name")]),
+                      _vm._v(" "),
+                      _c("th", { staticClass: "font-color" }, [
+                        _vm._v("Email")
+                      ]),
+                      _vm._v(" "),
+                      _c("th", { staticClass: "font-color" }, [_vm._v("Role")]),
+                      _vm._v(" "),
+                      _vm.$can("user_update") || _vm.$can("user_delete")
+                        ? _c("th", { staticClass: "font-color" }, [
+                            _c("i", {
+                              staticClass:
+                                "ace-icon fa fa-clock-o bigger-110 hidden-480"
+                            }),
+                            _vm._v(
+                              "\n                            Action\n                        "
+                            )
+                          ])
+                        : _vm._e()
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -61018,54 +61071,60 @@ var render = function() {
                         _vm._v(" "),
                         _c("td"),
                         _vm._v(" "),
-                        _c("td", [
-                          _c("div", { staticClass: "dropdown" }, [
-                            _vm._m(2, true),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "dropdown-menu" }, [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "dropdown-item",
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.editUser(user.id)
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("i", {
-                                    staticClass:
-                                      "fas fa-cogs text-dark-pastel-green edit-button"
-                                  }),
-                                  _vm._v("Edit")
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "dropdown-item",
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      return _vm.deleteUser(user.id)
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("i", {
-                                    staticClass:
-                                      "fas fa-trash text-orange-red edit-button"
-                                  }),
-                                  _vm._v("Delete")
-                                ]
-                              )
+                        _vm.$can("user_update") || _vm.$can("user_delete")
+                          ? _c("td", [
+                              _c("div", { staticClass: "dropdown" }, [
+                                _vm._m(1, true),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "dropdown-menu" }, [
+                                  _vm.$can("user_update")
+                                    ? _c(
+                                        "a",
+                                        {
+                                          staticClass: "dropdown-item",
+                                          attrs: { href: "#" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.editUser(user.id)
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass:
+                                              "fas fa-cogs text-dark-pastel-green edit-button"
+                                          }),
+                                          _vm._v("Edit")
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _vm.$can("user_delete")
+                                    ? _c(
+                                        "a",
+                                        {
+                                          staticClass: "dropdown-item",
+                                          attrs: { href: "#" },
+                                          on: {
+                                            click: function($event) {
+                                              $event.preventDefault()
+                                              return _vm.deleteUser(user.id)
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass:
+                                              "fas fa-trash text-orange-red edit-button"
+                                          }),
+                                          _vm._v("Delete")
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ])
+                              ])
                             ])
-                          ])
-                        ])
+                          : _vm._e()
                       ])
                     }),
                     0
@@ -61122,31 +61181,6 @@ var staticRenderFns = [
       { staticClass: "clearfix", staticStyle: { "margin-bottom": "14px" } },
       [_c("div", { staticClass: "pull-right tableTools-container" })]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", { staticClass: "font-color" }, [_vm._v("ID")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "font-color" }, [_vm._v("Name")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "font-color" }, [_vm._v("Email")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "font-color" }, [_vm._v("Role")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "font-color" }, [
-          _c("i", {
-            staticClass: "ace-icon fa fa-clock-o bigger-110 hidden-480"
-          }),
-          _vm._v(
-            "\n                            Action\n                        "
-          )
-        ])
-      ])
-    ])
   },
   function() {
     var _vm = this

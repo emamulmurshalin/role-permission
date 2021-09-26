@@ -8,7 +8,8 @@
                     <div class="pull-right tableTools-container"></div>
                 </div>
 
-                <button @click.prevent="openModal" data-toggle="modal" class="btn btn-primary btn-design">
+                <button v-if="$can('user_create')" @click.prevent="openModal"
+                        data-toggle="modal" class="btn btn-primary btn-design">
                     <i class="fas glyphicon-plus"></i>
                     Add new
                 </button>
@@ -24,7 +25,7 @@
                             <th class="font-color">Name</th>
                             <th class="font-color">Email</th>
                             <th class="font-color">Role</th>
-                            <th class="font-color">
+                            <th class="font-color" v-if="$can('user_update') || $can('user_delete')">
                                 <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
                                 Action
                             </th>
@@ -39,16 +40,16 @@
                             <td>{{ user.name }}</td>
                             <td>{{ user.email }}</td>
                             <td></td>
-                            <td>
+                            <td v-if="$can('user_update') || $can('user_delete')">
                                 <div class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                                        aria-expanded="false">
                                         <span class="flaticon-more-button-of-three-dots"></span>
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a @click="editUser(user.id)" class="dropdown-item" href="#"><i
+                                        <a v-if="$can('user_update')" @click="editUser(user.id)" class="dropdown-item" href="#"><i
                                             class="fas fa-cogs text-dark-pastel-green edit-button"></i>Edit</a>
-                                        <a @click.prevent="deleteUser(user.id)" class="dropdown-item" href="#"><i
+                                        <a v-if="$can('user_delete')" @click.prevent="deleteUser(user.id)" class="dropdown-item" href="#"><i
                                             class="fas fa-trash text-orange-red edit-button"></i>Delete</a>
                                     </div>
                                 </div>
